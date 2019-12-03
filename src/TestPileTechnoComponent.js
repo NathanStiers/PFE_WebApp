@@ -20,6 +20,25 @@ class TestPileTechnoComponent extends React.Component {
             });
             }
         )
+
+        var user = {
+          "name":"testingFromWebApp",
+          "surname":"test",
+          "code":"generatedInWebApp"
+        }
+
+        fetch("/myapp/user/register", {
+          method: 'POST',
+          headers:{
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(user)
+        });
+
+        
+
+
+
     }
     render() {
         const { msg } = this.state;
