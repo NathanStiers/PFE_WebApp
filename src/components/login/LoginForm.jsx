@@ -31,7 +31,7 @@ const LoginForm = ({
                     </Form.Group>
 
                     <Form.Group>
-                        <Button type="submit" onSubmit = {authenticate}>Se connecter</Button>
+                        <Button type="submit" onSubmit = {authenticate}>Connexion</Button>
                     </Form.Group>
                 </Form>
                 {errorMessage && <Alert variant = "danger">{errorMessage}</Alert>}
