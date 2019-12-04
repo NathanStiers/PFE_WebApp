@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import TestPileTechno from './TestPileTechnoComponent';
+import TestPileTechno from './components/test/TestPileTechnoComponent';
+import Jeu from './components/jeu/Jeu';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         </a>
       </header>
     </div>
+    /*<Jeu></Jeu>*/
   );
 }
 
