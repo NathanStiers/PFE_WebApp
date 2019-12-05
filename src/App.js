@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import TestPileTechno from './components/test/TestPileTechnoComponent';
 import Jeu from './components/jeu/Jeu';
-import Configuration from './components/configuration/Configuration';
+import Configuration from './components/configuration/ConfigurationContainer';
 import Animateur from './components/animateur/Animateur';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
       </header>
       <Jeu></Jeu>
       <Animateur></Animateur>
+      <Configuration></Configuration>
     </div>
   );
 }
