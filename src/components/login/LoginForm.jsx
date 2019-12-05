@@ -1,4 +1,5 @@
 import React from "react";
+import {Image, Container, Row, Col, ListGroup, ListGroupItem, Form, Alert} from 'react-bootstrap';
 
 const LoginForm = ({
     nom,
@@ -9,7 +10,7 @@ const LoginForm = ({
             <Col>
                 <Form onSubmit={authenticate}>
                     <Form.Group controlId = "formHorizontalNom">
-                        <From.Label>Nom : </From.Label>
+                        <Form.Label>Nom : </Form.Label>
                         <Form.Control
                             name = "nom"
                             type = "nom"

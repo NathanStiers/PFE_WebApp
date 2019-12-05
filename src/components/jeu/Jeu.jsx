@@ -19,8 +19,10 @@ const Jeu = () => {
         "selever.jpg","semoucher.jpg","secherlescheveux.jpg","toilettes.jpg","urgence.jpg"]]
     return (
         <div>
-            <h1 className='Jeu-Titre'>HandicApp</h1>
-            <h2 className='Jeu-SousTitre'>Raconte ton histoire</h2>
+            <div>
+              <h1 class='Jeu-Titre'>HandicApp</h1>
+              <h2 class='Jeu-SousTitre'>Raconte ton histoire</h2>
+            </div>
             <ListGroup>
             {categories.map((category,index) => 
               <ListGroupItem variant="info">
