@@ -20,3 +20,12 @@
 .App-link {
   color: #09d3ac;
 }
+
+@font-face {
+  font-family: 'opendyslexic';
+  src: url(OpenDyslexic-Regular.woff); /* Oui c'est moche mais c'est bien pour les dyslexiques */
+}
+
+.Dyslexic{
+  font-family: 'opendyslexic';
+}

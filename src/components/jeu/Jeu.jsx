@@ -1,8 +1,11 @@
 import React from "react";
-import {Image, Container, Row, Col, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Image, Container, Row, Col, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
+import { Redirect, BrowserRouter as Router } from 'react-router-dom'
 import './Jeu.css';
+import '../../App.css'
 
 let imagesPath = process.env.PUBLIC_URL + '/images';
+let finished = false;
 
 const Jeu = () => {
     let categories = ["Déplacements","Habitation","Loisirs","Nutrition","Relations et communication","Responsabilités","Soins personnels"];
@@ -17,17 +20,18 @@ const Jeu = () => {
     ["brossercheveux.jpg","chaussures.jpg","dormir.jpg","douche.jpg","habitssales.jpg","lavercheveux.jpg","laverlesmains.jpg"
         ,"prendrevetementgarderobe.jpg","sessuyer.jpg","shabillertirette.jpg","shabiller.jpg","sebrosserlesdents.jpg",
         "selever.jpg","semoucher.jpg","secherlescheveux.jpg","toilettes.jpg","urgence.jpg"]]
+    
     return (
         <div>
             <div>
-              <h1 class='Jeu-Titre'>HandicApp</h1>
-              <h2 class='Jeu-SousTitre'>Raconte ton histoire</h2>
+              <h1 class='Jeu-Titre Dyslexic'>HandicApp</h1>
+              <h2 class='Jeu-SousTitre Dyslexic'>Raconte ton histoire</h2>
             </div>
             <ListGroup>
             {categories.map((category,index) => 
               <ListGroupItem variant="info">
                 <Container>
-                    <h3>{categories[index]}</h3> 
+                    <h3 class='Dyslexic'>{categories[index]}</h3> 
                     <Row>
                       {items[index].map((item,index2) =>
                         <Col key={index + "" + index2} md={2}>
