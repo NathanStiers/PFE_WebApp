@@ -1,5 +1,7 @@
 import React from "react";
 import {Image, Container, Row, Col, ListGroup, ListGroupItem, Form, Alert, Button} from 'react-bootstrap';
+import '../../App.css'
+import './Login.css'
 
 const LoginForm = ({
     nom,
@@ -10,8 +12,9 @@ const LoginForm = ({
             <Col>
                 <Form /*onSubmit = {authenticate}*/>
                     <Form.Group controlId = "formHorizontalNom">
-                        <Form.Label>Nom : </Form.Label>
+                        <Form.Label className = "Dyslexic">Nom : </Form.Label>
                         <Form.Control
+                            className = "textInput Dyslexic"
                             name = "nom"
                             type = "nom"
                             placeholder = "nom"
@@ -21,8 +24,9 @@ const LoginForm = ({
                     </Form.Group>
 
                     <Form.Group controlId = "fromHorizontalCode">
-                        <Form.Label>Code : </Form.Label>
+                        <Form.Label className = "Dyslexic">Code : </Form.Label>
                         <Form.Control 
+                            className = "textInput Dyslexic"
                             name = "code"
                             type = "code"
                             placeholder = "code"
@@ -32,7 +36,7 @@ const LoginForm = ({
                     </Form.Group>
 
                     <Form.Group>
-                        <Button type="submit" /*onSubmit = {authenticate} */ >Connexion</Button>
+                        <Button className = "Dyslexic buttonText" type="submit" /*onSubmit = {authenticate} */ >Connexion</Button>
                     </Form.Group>
                 </Form>
                 {true /*errorMessage*/ && <Alert variant = "danger">Test ErrorMessage {/*errorMessage*/}</Alert>}
