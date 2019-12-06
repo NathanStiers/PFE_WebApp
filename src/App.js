@@ -6,6 +6,7 @@ import Jeu from './components/jeu/Jeu';
 import Configuration from './components/configuration/ConfigurationContainer';
 import Animateur from './components/animateur/Animateur';
 import LoginContainer from './components/login/LoginContainer';
+import Livret from './components/livret/Livret';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Jeu></Jeu>
       <Animateur></Animateur>
       <Configuration></Configuration>
+      <Livret></Livret>
     </div>
   );
 }
