@@ -1,6 +1,5 @@
 import React from "react";
 
-import Title from "../Title/Title";
 import LoginForm from "./LoginForm";
 
 const LoginContainer = () => {
@@ -9,12 +8,19 @@ const LoginContainer = () => {
     return (
 
         <div>
-        <Title>Login</Title>
+            <div>
+                <h1 class='Jeu-Titre'>HandicApp</h1>
+                <h2 class='Jeu-SousTitre'>Login</h2>
+            </div>
 
-        <LoginForm
-            nom = {nom}
-            code = {code}
-        ></LoginForm>
+            <div>
+                <LoginForm
+                    nom = "Test" //{nom}
+                    code = "code" //{code}
+                ></LoginForm>
+            </div>
         </div>
     );
     }
+
+    export default LoginContainer;

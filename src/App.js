@@ -5,6 +5,7 @@ import TestPileTechno from './components/test/TestPileTechnoComponent';
 import Jeu from './components/jeu/Jeu';
 import Configuration from './components/configuration/ConfigurationContainer';
 import Animateur from './components/animateur/Animateur';
+import LoginContainer from './components/login/LoginContainer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <TestPileTechno/>
         */}
       </header>
+      <LoginContainer></LoginContainer>
       <Jeu></Jeu>
       <Animateur></Animateur>
       <Configuration></Configuration>
