@@ -1,5 +1,7 @@
 import React from "react";
 import { Row, Col, Form, FormGroup, FormCheck, Button } from "react-bootstrap";
+import '../../App.css'
+import './Configuration.css'
 
 const ConfigurationForm = ({
     malvoyant, //bool
@@ -15,23 +17,23 @@ const ConfigurationForm = ({
                 <Col>
                     <Form /*onSubmit = {configure} */>
                         <Form.Group controlId = "formHorizontalMalvoyant">
-                            <Form.Check type = "checkbox" label = "L'enfant est malvoyant." /* OU Mode Malvoyant */ /> 
+                            <Form.Check className = "Dyslexic checkboxText" type = "checkbox" label = "L'enfant est malvoyant." /* OU Mode Malvoyant */ /> 
                         </Form.Group>
 
                         <Form.Group controlId = "formHorizontalMouvement">
-                            <Form.Check type = "checkbox" label = "L'enfant présente des problème de mouvement." /*OU Mode difficulté de mouvement */ />
+                            <Form.Check className = "Dyslexic checkboxText" type = "checkbox" label = "L'enfant présente des problème de mouvement." /*OU Mode difficulté de mouvement */ />
                         </Form.Group>
 
                         <Form.Group controlId = "formHorizontalDaltonien">
-                            <Form.Check type = "checkbox" label = "L'enfant est daltonien" /* OU Mode Daltonien */ />
+                            <Form.Check className = "Dyslexic checkboxText" type = "checkbox" label = "L'enfant est daltonien" /* OU Mode Daltonien */ />
                         </Form.Group>
 
                         <Form.Group controlId = "formHorizontalHelpFirst">
-                            <Form.Check type = "checkbox" label = "Je préfère commencer le jeu par besoins d'aide." />
+                            <Form.Check className = "Dyslexic checkboxText" type = "checkbox" label = "Je préfère commencer le jeu par besoins d'aide." />
                         </Form.Group>
 
                         <Form.Group>
-                            <Button type = "submit" /*onSubmit = {configure}*/ >Appliquer</Button>
+                            <Button className = "Dyslexic buttonText" type = "submit" /*onSubmit = {configure}*/ >Appliquer</Button>
                         </Form.Group>
                     </Form>
                 </Col>
