@@ -5,7 +5,11 @@ import './Login.css'
 
 const LoginForm = ({
     nom,
-    code
+    code,
+    errorMessage,
+    onInputChange
+    //authentificate,
+    
 }) => {
     return (
         <Row>
@@ -15,11 +19,11 @@ const LoginForm = ({
                         <Form.Label className = "Dyslexic">Nom : </Form.Label>
                         <Form.Control
                             className = "textInput Dyslexic"
-                            name = "nom"
+                            name = "name"
                             type = "nom"
                             placeholder = "nom"
                             value = {nom}
-                            //onChange = {onInputChange}
+                            onChange = {onInputChange}
                         />
                     </Form.Group>
 
@@ -31,7 +35,7 @@ const LoginForm = ({
                             type = "code"
                             placeholder = "code"
                             value = {code}
-                            //onChange = {onInputChange}
+                            onChange = {onInputChange}
                         />
                     </Form.Group>
 
@@ -39,7 +43,7 @@ const LoginForm = ({
                         <Button className = "Dyslexic buttonText" type="submit" /*onSubmit = {authenticate} */ >Connexion</Button>
                     </Form.Group>
                 </Form>
-                {true /*errorMessage*/ && <Alert variant = "danger">Test ErrorMessage {/*errorMessage*/}</Alert>}
+                {errorMessage && <Alert variant = "danger">Test ErrorMessage {/*errorMessage*/}</Alert>}
             </Col>
         </Row>
     )

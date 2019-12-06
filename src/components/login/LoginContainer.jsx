@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useContext} from "react";
 
 import LoginForm from "./LoginForm";
 import '../../App.css';
@@ -6,6 +6,22 @@ import './Login.css';
 
 
 const LoginContainer = () => {
+
+    // manage state
+    const [nom, setNom] = useState("");
+    const [code, setCode] = useState("");
+
+    const { isAuthenticated, setAuthentification } = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    // manage event fuction to update the state
+    const onInputChange = e => {
+        if(e.target.name === "name") {
+            setNom(e.target.value);
+        }else{
+            setCode(e.target.value);
+        }
+    }
 
     //render
     return (
@@ -18,8 +34,11 @@ const LoginContainer = () => {
 
             <div className = "blue-bg">
                 <LoginForm
-                    nom = "Test" //{nom}
-                    code = "code" //{code}
+                    nom = {nom}
+                    code = {code}
+                    errorMessage = {errorMessage}
+                    //authentificate = {} Méthode répondant à l'évenement
+                    onInputChange = {onInputChange}
                 ></LoginForm>
             </div>
         </div>
