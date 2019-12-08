@@ -1,5 +1,7 @@
 import React from "react";
 import {InputGroup, FormControl, Row, Col, Container, ListGroupItem, ListGroup} from 'react-bootstrap';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Animateur = () => {
     let mockUser = ["Lise Berit","Arnaud Vannat","Rita Uals","Wilfried Tereu","Vanessa Delvasse"];
@@ -27,7 +29,7 @@ const Animateur = () => {
             <Container>
 
             </Container>
-            <p>Une fois qu'il a cliqué sur un enfant ==> livret de l'enfant en question</p>
+            <Link to="livret">Une fois qu'il a cliqué sur un enfant</Link>
         </div>
     );
 }

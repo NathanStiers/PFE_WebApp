@@ -7,6 +7,7 @@ import Configuration from "./configuration/ConfigurationContainer"
 import Animateur from "./animateur/Animateur"
 import LoginContainer from "./login/LoginContainer"
 import Jeu from "./jeu/Jeu"
+import Livret from "./livret/Livret"
 
 
 function AppRouter() {
@@ -17,6 +18,7 @@ function AppRouter() {
       <Route path="/animateur" component={Animateur}></Route>
       <Route path="/configuration" component={Configuration}></Route>
       <Route path="/test" component={Test}></Route>
+      <Route path="/livret" component={Livret}></Route>
     </Router>
   )
 }

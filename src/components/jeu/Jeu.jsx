@@ -61,7 +61,7 @@ class Jeu extends React.Component {
             </ListGroup>
             <Link to="configuration">Une fois l'icône de configuration cliquée</Link><br/><br/>
             <p>Une fois qu'il a fini une des étapes ==> étape suivante</p>
-            <p>Une fois qu'il a fini toutes les étapes ==> livret de l'enfant</p>
+            <Link to="livret">Une fois qu'il a fini toutes les étapes</Link>
         </div>
     }
 }
