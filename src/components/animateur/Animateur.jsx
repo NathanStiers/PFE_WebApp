@@ -8,8 +8,8 @@ const Animateur = () => {
     return (
         <div>
             <div>
-              <h1 class='Jeu-Titre'>HandicApp</h1>
-              <h2 class='Jeu-SousTitre'>Animateur</h2>
+              <h1 class='Jeu-Titre Dyslexic'>HandicApp</h1>
+              <h2 class='Jeu-SousTitre Dyslexic'>Animateur</h2>
             </div>
             <ListGroup>
                 {mockUser.map((name, index)=>
@@ -17,7 +17,7 @@ const Animateur = () => {
                         <Container>
                             <Row>
                                 <Col>
-                                    <p>{name}</p>
+                                    <p class='Dyslexic'>{name}</p>
                                 </Col>
                             </Row>
                         </Container>
