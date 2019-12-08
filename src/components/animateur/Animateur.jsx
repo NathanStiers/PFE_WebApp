@@ -27,6 +27,7 @@ const Animateur = () => {
             <Container>
 
             </Container>
+            <p>Une fois qu'il a cliqué sur un enfant ==> livret de l'enfant en question</p>
         </div>
     );
 }

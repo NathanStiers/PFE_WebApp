@@ -1,8 +1,8 @@
 import React from "react";
 import {Image, Container, Row, Col, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
-import { Redirect, BrowserRouter as Router } from 'react-router-dom'
 import './Jeu.css';
-import '../../App.css'
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 let imagesPath = process.env.PUBLIC_URL + '/images';
 let finished = false;
@@ -43,6 +43,9 @@ const Jeu = () => {
               </ListGroupItem>
             )}
             </ListGroup>
+            <Link to="configuration">Une fois l'icône de configuration cliquée</Link><br/><br/>
+            <p>Une fois qu'il a fini une des étapes ==> étape suivante</p>
+            <p>Une fois qu'il a fini toutes les étapes ==> livret de l'enfant</p>
         </div>
     );
 }

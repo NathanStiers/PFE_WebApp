@@ -1,6 +1,5 @@
 import React from "react";
 import { Row, Col, Form, FormGroup, FormCheck, Button } from "react-bootstrap";
-import '../../App.css'
 import './Configuration.css'
 
 const ConfigurationForm = ({

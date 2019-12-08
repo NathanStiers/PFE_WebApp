@@ -1,7 +1,9 @@
 import React from "react";
 import {InputGroup, FormControl, Row, Col, Container, ListGroupItem} from 'react-bootstrap';
 import ConfigurationForm from "./ConfigurationForm"
-import '../../App.css'
+import './Configuration.css'
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Configuration = () => {
 
@@ -19,6 +21,7 @@ const Configuration = () => {
                     helpFirst = "false" //{helpFirst}
                 />
             </div>
+            <Link to="jeu">Une fois le bouton "Appliquer" cliqué</Link>
         </div>
     );
 }
