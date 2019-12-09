@@ -1,6 +1,8 @@
 import React from "react";
 import { Row, Col, Form, FormGroup, FormCheck, Button } from "react-bootstrap";
 import './Configuration.css'
+import '../../index.css'
+
 
 const ConfigurationForm = ({
     malvoyant, //bool

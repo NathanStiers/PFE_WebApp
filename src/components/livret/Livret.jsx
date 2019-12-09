@@ -1,5 +1,6 @@
 import React from "react";
 import {Image, Table} from 'react-bootstrap';
+import '../../index.css'
 
 let imagesPath = process.env.PUBLIC_URL + '/images';
 

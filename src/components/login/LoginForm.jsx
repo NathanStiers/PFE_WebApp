@@ -1,6 +1,8 @@
 import React from "react";
 import {Image, Container, Row, Col, ListGroup, ListGroupItem, Form, Alert, Button} from 'react-bootstrap';
 import './Login.css'
+import '../../index.css'
+
 
 const LoginForm = ({
     nom,

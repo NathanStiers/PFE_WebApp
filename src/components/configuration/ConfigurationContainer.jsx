@@ -4,6 +4,8 @@ import ConfigurationForm from "./ConfigurationForm"
 import './Configuration.css'
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import '../../index.css'
+
 
 const Configuration = () => {
 

@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face {
+  font-family: 'opendyslexic';
+  src: url(OpenDyslexic-Regular.woff); /* Oui c'est moche mais c'est bien pour les dyslexiques */
+}
+
+.Dyslexic{
+  font-family: 'opendyslexic';
+}

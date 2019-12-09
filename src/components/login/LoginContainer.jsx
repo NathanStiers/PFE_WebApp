@@ -6,6 +6,9 @@ import './Login.css';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
+import '../../index.css'
+
+
 const LoginContainer = () => {
 
     // manage state
