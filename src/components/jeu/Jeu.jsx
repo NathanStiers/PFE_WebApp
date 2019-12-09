@@ -3,6 +3,7 @@ import {Image, Container, Row, Col, ListGroup, ListGroupItem, Button} from 'reac
 import './Jeu.css';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import PopupImage from "./PopupImage";
 
 let imagesPath = process.env.PUBLIC_URL + '/images';
 let finished = false;
@@ -24,18 +25,7 @@ class Jeu extends React.Component {
       super(props);
     }
     componentDidMount() {
-      fetch("/myapp/myresource")
-        .then(res => res.text())
-        .then((result) => {
-          this.setState({
-              msg : "Yeeeees : " + result
-          });
-          },(error) => {
-          this.setState({
-              msg : "Noooooo : " + error
-          });
-          }
-      )
+      //todo
     }
     render(){
       return <div>
@@ -43,6 +33,7 @@ class Jeu extends React.Component {
               <h1 class='Jeu-Titre Dyslexic'>HandicApp</h1>
               <h2 class='Jeu-SousTitre Dyslexic'>Raconte ton histoire</h2>
             </div>
+            <PopupImage></PopupImage>
             <ListGroup>
             {categories.map((category,index) => 
               <ListGroupItem variant="info">
@@ -51,7 +42,7 @@ class Jeu extends React.Component {
                     <Row>
                       {items[index].map((item,index2) =>
                         <Col key={index + "" + index2} md={2}>
-                        <Image fluid src={imagesPath + categoriesPath[index] + items[index][index2]} thumbnail />
+                          <PopupImage path={imagesPath + categoriesPath[index] + items[index][index2]}></PopupImage>
                         </Col>
                       )}
                     </Row>
