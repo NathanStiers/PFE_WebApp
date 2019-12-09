@@ -41,7 +41,7 @@ const LoginContainer = () => {
                     nom = {nom}
                     code = {code}
                     errorMessage = {errorMessage}
-                    //authentificate = {} Méthode répondant à l'évenement
+                    //authentificate = {} Méthode répondant à l'évenement -> devra faire un fetch et ensuite un Redirect si le fetch retourne 200
                     onInputChange = {onInputChange}
                 ></LoginForm>
                 <Link to="jeu">Une fois connecté si enfant</Link><br/><br/>
