@@ -8,14 +8,14 @@ const LoginForm = ({
     nom,
     code,
     errorMessage,
-    onInputChange
-    //authentificate,
+    onInputChange,
+    authentificate
     
 }) => {
     return (
         <Row>
             <Col>
-                <Form /*onSubmit = {authenticate}*/>
+                <Form onSubmit = {authentificate}>
                     <Form.Group controlId = "formHorizontalNom">
                         <Form.Label className = "Dyslexic">Nom : </Form.Label>
                         <Form.Control
@@ -41,10 +41,10 @@ const LoginForm = ({
                     </Form.Group>
 
                     <Form.Group>
-                        <Button className = "Dyslexic buttonText" type="submit" /*onSubmit = {authenticate} */ >Connexion</Button>
+                        <Button className = "Dyslexic buttonText" type="submit" onSubmit = {authentificate} >Connexion</Button>
                     </Form.Group>
                 </Form>
-                {errorMessage && <Alert variant = "danger">Test ErrorMessage {/*errorMessage*/}</Alert>}
+                {errorMessage && <Alert variant = "danger"> {errorMessage}</Alert>}
             </Col>
         </Row>
     )

@@ -1,5 +1,6 @@
 label {
     font-size: 21px;
+    text-align: center;
 }
 
 .textInput{
@@ -11,6 +12,7 @@ label {
 
 .buttonText{
     font-size: 22.5px;
+    text-align: center;
 }
 
 .blue-bg{

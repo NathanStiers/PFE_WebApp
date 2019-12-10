@@ -32,42 +32,34 @@ const LoginContainer = () => {
         e.preventDefault();
 
         const user = {
-            nom : nom,
+            name : nom,
             code : code
         };
 
-        try{
-            const response = await fetch(" https://api-pfe-dev.herokuapp.com/user/connection", {
+        /*try{
+            const response = await fetch ("http://localhost:8080/myapp/user/connection", {
                 method : "POST",
                 body : JSON.stringify(user),
+                mode : 'no-cors',
                 headers : {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Accept":"application/json"
                 }
             });
 
-            const json = await response.json();
-
-            if (json.sucess) { //selon code HTTP
+            if (response.ok) { //selon code HTTP
                 setAuthentification(true);
-            }else{
-                setErrorMessage(json.error);
+            }else if(true){
+                //setErrorMessage(json.error);
             }
         }
         catch (err){
             console.error("LoginContainer::Error", err);
             setAuthentification(false);
             setErrorMessage(err.toString());
-        }
+        }*/
+        console.log("click sur boutton connexion");
     };
-
-    /*TODO : 
-        - fix error when connecting SyntaxError :
-          Unexpected token < in JSON at position 0
-
-        - Error appel is GET local
-
-        - make the connexion work between the API and webapp for checking.
-    */
 
         //render
         if(!isAuthenticated){
@@ -96,7 +88,8 @@ const LoginContainer = () => {
         }else{
             return (
 
-            <p>Connecté avec succès</p>
+                //TODO redirection selo la personne conecté
+            <p>TODO Redirection selon le role de la personne</p>
 
             );
         }
