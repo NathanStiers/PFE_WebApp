@@ -4,6 +4,7 @@
   "description": "Application d'aide aux personnes en situation d'handicap",
   "author": "Stiers Nathan, Nicolaes Michael, Ieitz Andy, Holodiline Jeremy",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "react": "^16.12.0",
