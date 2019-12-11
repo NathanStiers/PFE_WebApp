@@ -36,17 +36,21 @@ const LoginContainer = () => {
             code : code
         };
 
-        /*try{
-            const response = await fetch ("http://localhost:8080/myapp/user/connection", {
-                method : "POST",
-                body : JSON.stringify(user),
+        try{
+            const response = await fetch ('/user/connection', {
+                method : 'POST',
+                body : {
+                    'code':'aaa',
+                    'name':'aaa'
+                },
                 mode : 'no-cors',
                 headers : {
-                    "Content-Type": "application/json",
-                    "Accept":"application/json"
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Content-Encoding' : 'application/json',
+                    'Accept': 'application/json, text/plain, */*',
                 }
             });
-
+            console.log(response)
             if (response.ok) { //selon code HTTP
                 setAuthentification(true);
             }else if(true){
@@ -57,7 +61,7 @@ const LoginContainer = () => {
             console.error("LoginContainer::Error", err);
             setAuthentification(false);
             setErrorMessage(err.toString());
-        }*/
+        }
         console.log("click sur boutton connexion");
     };
 
@@ -89,7 +93,10 @@ const LoginContainer = () => {
             return (
 
                 //TODO redirection selo la personne conecté
-            <p>TODO Redirection selon le role de la personne</p>
+                <div>
+                     <Redirect to="jeu"></Redirect>
+                    <p>TODO Redirection selon le role de la personne</p>
+                </div>
 
             );
         }

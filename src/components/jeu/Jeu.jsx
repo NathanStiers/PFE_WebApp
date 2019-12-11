@@ -17,7 +17,7 @@ class Jeu extends React.Component {
       };
     }
     componentDidMount() {
-      fetch("https://pfe-api-dev.herokuapp.com/categories", {
+      fetch("/categories", {
         method: 'GET',
         mode: 'no-cors',
         headers:{
@@ -33,7 +33,7 @@ class Jeu extends React.Component {
           console.log(error);
         }
       )
-      fetch("https://pfe-api-dev.herokuapp.com/images", {
+      fetch("/images", {
         method: 'GET',
         mode: 'no-cors',
         headers:{
