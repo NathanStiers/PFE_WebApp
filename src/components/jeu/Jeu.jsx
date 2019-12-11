@@ -17,7 +17,7 @@ class Jeu extends React.Component {
       };
     }
     componentDidMount() {
-      fetch("/categories", {
+      fetch("https://pfe-api-dev.herokuapp.com/categories", {
         method: 'GET',
         mode: 'no-cors',
         headers:{
@@ -33,7 +33,7 @@ class Jeu extends React.Component {
           console.log(error);
         }
       )
-      fetch("/images", {
+      fetch("https://pfe-api-dev.herokuapp.com/images", {
         method: 'GET',
         mode: 'no-cors',
         headers:{
@@ -56,15 +56,15 @@ class Jeu extends React.Component {
     render(){
       return <div>
             <div>
-              <h1 class='Jeu-Titre Dyslexic'>HandicApp</h1>
-              <h2 class='Jeu-SousTitre Dyslexic'>Raconte ton histoire</h2>
-              <h2 class='Jeu-SousTitre Dyslexic'>{this.state.etape}</h2>
+              <h1 className='Jeu-Titre Dyslexic'>HandicApp</h1>
+              <h2 className='Jeu-SousTitre Dyslexic'>Raconte ton histoire</h2>
+              <h2 className='Jeu-SousTitre Dyslexic'>{this.state.etape}</h2>
             </div>
             <ListGroup>
             {this.state.categories.map((category) => 
               <ListGroupItem variant="info">
                 <Container>
-                    <h3 id={category.id} class='Dyslexic'>{category.label}</h3> 
+                    <h3 id={category.id} className='Dyslexic'>{category.label}</h3> 
                     <Row>
                       {this.state.images.map((image) => {
                         if(image.category == category.id){
@@ -72,17 +72,17 @@ class Jeu extends React.Component {
                             <Popup trigger={<Image fluid src={imagesPath + image.image} thumbnail />} modal closeOnDocumentClick>
                               <Container>
                                 <Row>
-                                    <h3 class='Dyslexic'>{this.state.etape + " : " + image.name}</h3>
+                                    <h3 className='Dyslexic'>{this.state.etape + " : " + image.name}</h3>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Image class='smiley' fluid src={imagesPath + '/smiley/happy.jpg'} roundedCircle  />
+                                        <Image className='smiley' fluid src={imagesPath + '/smiley/happy.jpg'} roundedCircle  />
                                     </Col>
                                     <Col>
                                         <Image fluid src={imagesPath + image.image} thumbnail />
                                     </Col>
                                     <Col>
-                                        <Image class='smiley' fluid src={imagesPath + '/smiley/sad.jpg'} roundedCircle  />  
+                                        <Image className='smiley' fluid src={imagesPath + '/smiley/sad.jpg'} roundedCircle  />  
                                     </Col>
                                 </Row>
                               </Container>

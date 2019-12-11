@@ -4,9 +4,9 @@
   "description": "Application d'aide aux personnes en situation d'handicap",
   "author": "Stiers Nathan, Nicolaes Michael, Ieitz Andy, Holodiline Jeremy",
   "private": true,
-  "proxy": "https://pfe-api-dev.herokuapp.com",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "http-proxy-middleware": "^0.20.0",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
