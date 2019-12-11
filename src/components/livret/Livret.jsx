@@ -2,7 +2,7 @@ import React from "react";
 import {Image, Table} from 'react-bootstrap';
 import '../../index.css'
 
-let imagesPath = process.env.PUBLIC_URL + '/images';
+let imagesPath = process.env.PUBLIC_URL + '/imagesJeu';
 
 const Livret = () => {
     let categories = ["Déplacements","Habitation","Loisirs","Nutrition","Relations et communication","Responsabilités","Soins personnels"];

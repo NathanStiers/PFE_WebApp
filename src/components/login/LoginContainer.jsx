@@ -39,23 +39,15 @@ const LoginContainer = () => {
         try{
             const response = await fetch ('/user/connection', {
                 method : 'POST',
-                body : {
-                    'code':'aaa',
-                    'name':'aaa'
-                },
+                body : JSON.stringify(user),
                 mode : 'no-cors',
                 headers : {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'Content-Encoding' : 'application/json',
+                    'Content-Type': 'text/plain;charset=UTF-8',
+                    'Content-Encoding' : 'text/plain',
                     'Accept': 'application/json, text/plain, */*',
                 }
-            });
+            }).then(result => result.json())
             console.log(response)
-            if (response.ok) { //selon code HTTP
-                setAuthentification(true);
-            }else if(true){
-                //setErrorMessage(json.error);
-            }
         }
         catch (err){
             console.error("LoginContainer::Error", err);
