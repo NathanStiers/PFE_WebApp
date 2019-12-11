@@ -9,6 +9,14 @@ import '../../index.css'
 
 const Configuration = () => {
 
+    const onSubmit = e => {
+        e.preventDefault();
+        
+            //TODO : enregister les paramètres et redirect
+
+         console.log("Click avec gestion");
+    }
+
     return (
         <div>
             <div>
@@ -21,6 +29,7 @@ const Configuration = () => {
                     mouvement = "false" //{mouvement}
                     daltonien = "false" //{daltonien}
                     helpFirst = "false" //{helpFirst}
+                    onSubmit = {onSubmit}
                 />
             </div>
             <Link to="jeu">Une fois le bouton "Appliquer" cliqué</Link>
