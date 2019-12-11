@@ -3,93 +3,93 @@ import {Image, Container, Row, Col, ListGroup, ListGroupItem, Button} from 'reac
 import './Jeu.css';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
-import PopupImage from "./PopupImage";
+import Popup from "reactjs-popup";
 
-let imagesPath = process.env.PUBLIC_URL + '/images';
-let finished = false;
-let categories = ["Déplacements","Habitation","Loisirs","Nutrition","Relations et communication","Responsabilités","Soins personnels"];
-let categoriesPath = ["/deplacements/","/habitation/","/loisirs/","/nutrition/","/relationscom/","/responsabilites/","/soinspersonnels/"];
-let items = [
-["bus.jpg","marcher.jpg","traverser.jpg","velo.jpg","voiture.jpg"],
-["allumerlumiere.jpg","balayer.jpg","machinealaver.jpg","passerdunepiecealautre.jpg","prothese.jpg","rangersonespace.jpg","vaisselledef.jpg"],
-["casqueetordi.jpg","ecrire.jpg","lire.jpg","television.jpg"],
-["boiretasse.jpg","dresserlatable.jpg","mangeraurestaurant.jpg","mangeraveclesmains.jpg","prepareramanger.jpg","sandwichdef.jpg","serviraliments.jpg"],
-["parleradesadultes.jpg","parlerencommunaute.jpg","telephone.jpg"],
-["acheter.jpg"],
-["brossercheveux.jpg","chaussures.jpg","dormir.jpg","douche.jpg","habitssales.jpg","lavercheveux.jpg","laverlesmains.jpg"
-    ,"prendrevetementgarderobe.jpg","sessuyer.jpg","shabillertirette.jpg","shabiller.jpg","sebrosserlesdents.jpg",
-    "selever.jpg","semoucher.jpg","secherlescheveux.jpg","toilettes.jpg","urgence.jpg"]]
-
-let deplacements = [];
-let habitation = [];
-let loisirs = [];
-let nutrition = [];
-let relationscom = [];
-let responsabilite = [];
-let soinspersonnels = [];
+let imagesPath = process.env.PUBLIC_URL + "/imagesJeu";
 
 class Jeu extends React.Component {
     constructor(props){
       super(props);
+      this.state = {
+        categories : [],
+        images : [],
+        etape : 'J\'aime / Je n\'aime pas'
+      };
     }
-    /*componentDidMount() {
-      fetch("/myapp/images", {
+    componentDidMount() {
+      fetch("/categories", {
         method: 'GET',
-        mode:'cors',
+        mode: 'no-cors',
         headers:{
-          'Content-Type': 'application/json',
-          'Accept':'application/json'
+          'Accept':'application/json',
         }
-      })
-      .then(result => result.json())
-      .then(result => {
-        result.array.forEach(image => {
-          switch (image.categorie) {
-            case 1:
-              deplacements.push(image);
-              break;
-            case 2:
-              habitation.push(image);
-              break;
-            case 3:
-              loisirs.push(image);
-              break;
-            case 4:
-              nutrition.push(image);
-              break;
-            case 5:
-              relationscom.push(image);
-              break;
-            case 6:
-              responsabilite.push(image);
-              break;
-            case 7:
-              soinspersonnels.push(image);
-              break;
-            default:
-              break;
-          }
+      }).then(result => result.json()).then(result => {
+        this.setState({
+          categories : result,
+          images : this.state.images,
+          etape : this.state.etape
         });
-      });
-    }*/
+        },(error) => {
+          console.log(error);
+        }
+      )
+      fetch("/images", {
+        method: 'GET',
+        mode: 'no-cors',
+        headers:{
+          'Accept':'application/json',
+        }
+      }).then(result => result.json()).then(result => {
+        result.map(img => {
+          img.image = img.image.replace("/images/","/");
+        })
+        this.setState({
+          categories : this.state.categories,
+          images : result,
+          etape : this.state.etape
+        });
+        },(error) => {
+          console.log(error);
+        }
+      )
+    }
     render(){
       return <div>
             <div>
               <h1 class='Jeu-Titre Dyslexic'>HandicApp</h1>
               <h2 class='Jeu-SousTitre Dyslexic'>Raconte ton histoire</h2>
+              <h2 class='Jeu-SousTitre Dyslexic'>{this.state.etape}</h2>
             </div>
-            <PopupImage></PopupImage>
             <ListGroup>
-            {categories.map((category,index) => 
+            {this.state.categories.map((category) => 
               <ListGroupItem variant="info">
                 <Container>
-                    <h3 class='Dyslexic'>{categories[index]}</h3> 
+                    <h3 id={category.id} class='Dyslexic'>{category.label}</h3> 
                     <Row>
-                      {items[index].map((item,index2) =>
-                        <Col key={index + "" + index2} md={2}>
-                          <PopupImage path={imagesPath + categoriesPath[index] + items[index][index2]}></PopupImage>
-                        </Col>
-                      )}
+                      {this.state.images.map((image) => {
+                        if(image.category == category.id){
+                          return <Col md={2}>
+                            <Popup trigger={<Image fluid src={imagesPath + image.image} thumbnail />} modal closeOnDocumentClick>
+                              <Container>
+                                <Row>
+                                    <h3 class='Dyslexic'>{this.state.etape + " : " + image.name}</h3>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Image class='smiley' fluid src={imagesPath + '/smiley/happy.jpg'} roundedCircle  />
+                                    </Col>
+                                    <Col>
+                                        <Image fluid src={imagesPath + image.image} thumbnail />
+                                    </Col>
+                                    <Col>
+                                        <Image class='smiley' fluid src={imagesPath + '/smiley/sad.jpg'} roundedCircle  />  
+                                    </Col>
+                                </Row>
+                              </Container>
+                            </Popup>
+                          </Col>
+                        }
+                      })}
                     </Row>
                 </Container>
               </ListGroupItem>
