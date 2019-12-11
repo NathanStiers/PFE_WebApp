@@ -7,6 +7,24 @@ import Popup from "reactjs-popup";
 
 let imagesPath = process.env.PUBLIC_URL + "/imagesJeu";
 
+const positiveClick = e => {
+  e.currentTarget.style.background = "#00ff00";
+
+/*TODO :
+ * Verifier l'autre choix.
+ * enregister la valeur.
+ * actualiser la valeur lorsqu'on reclique sur un élément (pas nécessaire mais un plus)
+ * envoyer les données.
+ * */
+
+}
+
+const negativeClick = e => {
+  e.currentTarget.style.background = "#ff0000";
+
+  //TODO : Idem que positive
+}
+
 class Jeu extends React.Component {
     constructor(props){
       super(props);
@@ -75,13 +93,13 @@ class Jeu extends React.Component {
                                     <h3 className='Dyslexic'>{this.state.etape + " : " + image.name}</h3>
                                 </Row>
                                 <Row>
-                                    <Col>
+                                    <Col onClick = {positiveClick}>
                                         <Image className='smiley' fluid src={imagesPath + '/smiley/happy.jpg'} roundedCircle  />
                                     </Col>
                                     <Col>
                                         <Image fluid src={imagesPath + image.image} thumbnail />
                                     </Col>
-                                    <Col>
+                                    <Col onClick = {negativeClick}>
                                         <Image className='smiley' fluid src={imagesPath + '/smiley/sad.jpg'} roundedCircle  />  
                                     </Col>
                                 </Row>
