@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Handic'App",
+  "name": "Application d'aide aux personnes en situation d'handicap",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,9 +18,9 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "scope": "/maps/"
+  "scope": "/"
 }

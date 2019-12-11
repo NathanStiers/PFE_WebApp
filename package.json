@@ -16,13 +16,15 @@
     "reactjs-popup": "^1.5.0"
   },
   "devDependencies": {
+    "http-server": "^0.12.0",
     "jshint": "^2.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "test": "jshint hello.js"
+    "test": "jshint hello.js",
+    "start-sw": "http-server ./build"
   },
   "eslintConfig": {
     "extends": "react-app"
