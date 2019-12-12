@@ -24,7 +24,8 @@ class Jeu extends React.Component {
         pasBesoin : [],
         pasContent : [],
         sheetId : 0,
-        finDuJeu : false
+        finDuJeu : false,
+        codeUser : "",
       };
     }
     smileyClicked = (image,smiley) => {
@@ -237,14 +238,15 @@ class Jeu extends React.Component {
             img.image = img.image.replace("/images/","/");
           })
           this.setState({
-            images : result
+            images : result,
+            codeUser : this.props.match.params.code
           });
           },(error) => {
             console.log(error);
           }
         )
       ).then(
-        fetch("/sheet/new/"+this.props.match.params.code, {
+        fetch("/sheet/new/"+this.state.codeUser, {
           method: 'GET',
           mode: 'no-cors',
           headers:{
@@ -262,7 +264,7 @@ class Jeu extends React.Component {
     }
     render(){
       if(this.state.finDuJeu){
-        const code = this.props.match.params.code
+        const code = this.state.codeUser
         return <Redirect to={`livret/${code}`}></Redirect>
       }else{
         return <div>

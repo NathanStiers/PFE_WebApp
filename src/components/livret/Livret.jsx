@@ -11,7 +11,8 @@ class Livret extends React.Component {
       this.state = {
         categories : [],
         images : [],
-        items : []
+        items : [],
+        date : ""
       }
     }
     componentDidMount() {
@@ -47,7 +48,7 @@ class Livret extends React.Component {
                 }
             )
         ).then(
-            fetch("/sheet/date/"+this.props.match.params.code+"/"+new Date(),{ // TODO date
+            fetch("/sheet/date/"+this.props.match.params.code+"/"+this.state.date,{ // TODO date
                 method: 'GET',
                 mode: 'no-cors',
                 headers:{
@@ -89,8 +90,11 @@ class Livret extends React.Component {
                       }
                     });
                   });
+                  let date = new Date();
+                  let dateString = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
                   this.setState({
-                      items : [...itemList]
+                      items : [...itemList],
+                      date : dateString
                   });
                 },(error) => {
                     console.log(error);
