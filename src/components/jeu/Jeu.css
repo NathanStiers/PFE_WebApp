@@ -5,3 +5,24 @@
 #btnSuivant{
     margin-left: 300%;
 }
+
+textarea {
+    min-width: 100%;
+    min-height: 70%;
+    visibility: hidden;
+}
+
+.btnComment{
+    display: block;
+    margin: auto;
+}
+
+.btnCommentValid{
+    display: block;
+    margin: auto;
+    visibility: hidden;
+}
+
+.commentCol{
+    height: fit-content;
+}
