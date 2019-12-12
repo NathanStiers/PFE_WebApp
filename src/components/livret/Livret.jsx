@@ -11,36 +11,8 @@ class Livret extends React.Component {
       this.state = {
         categories : [],
         images : [],
-        items : [],
-        TESTS : [{ // A ENLEVER APRES TESTING
-          id:1,
-          sheetId:1,
-          itemId:1,
-          loveIt:true,
-          needHelp:true,
-          wannaChange:false,
-          favorite:false,
-          comment:""
-        },{
-          id:2,
-          sheetId:1,
-          itemId:10,
-          loveIt:true,
-          needHelp:false,
-          wannaChange:false,
-          favorite:false,
-          comment:"Hey"
-        },{
-          id:3,
-          sheetId:1,
-          itemId:20,
-          loveIt:false,
-          needHelp:true,
-          wannaChange:true,
-          favorite:false,
-          comment:"Lul"
-        }]
-      };
+        items : []
+      }
     }
     componentDidMount() {
         fetch("/categories", {
@@ -75,7 +47,7 @@ class Livret extends React.Component {
                 }
             )
         ).then(
-            fetch("/categories",{ // TODO comment récuperer le nom du user ? CHANGER URL APRES TESTING en /sheet/name
+            fetch("/sheet/date/"+this.props.match.params.code+"/"+new Date(),{ // TODO date
                 method: 'GET',
                 mode: 'no-cors',
                 headers:{
@@ -83,7 +55,7 @@ class Livret extends React.Component {
                 }
                 }).then(result => result.json()).then(result => {
                   let itemList = [];
-                  this.state.TESTS.map((item) => { // A CHANGER APRES TESTING EN result
+                  result.map((item) => {
                     this.state.images.map((img) => {
                       if(item.itemId === img.id){
                         this.state.categories.map((cat) => {
