@@ -12,7 +12,8 @@ class Livret extends React.Component {
         categories : [],
         images : [],
         items : [],
-        date : ""
+        date : "",
+        userCode : "",
       }
     }
     componentDidMount() {
@@ -40,15 +41,19 @@ class Livret extends React.Component {
                 result.map(img => {
                   img.image = img.image.replace("/images/","/");
                 })
+                let date = new Date();
+                let dateString = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
                 this.setState({
-                  images : result
+                  images : result,
+                  date : dateString,
+                  userCode : this.props.match.params.code
                 });
                 },(error) => {
                   console.log(error);
                 }
-            )
-        ).then(
-            fetch("/sheet/date/"+this.props.match.params.code+"/"+this.state.date,{ // TODO date
+            ).then(() => {
+            let url = "/sheet/date/"+this.state.userCode+"/"+this.state.date
+            fetch(url,{
                 method: 'GET',
                 mode: 'no-cors',
                 headers:{
@@ -56,7 +61,7 @@ class Livret extends React.Component {
                 }
                 }).then(result => result.json()).then(result => {
                   let itemList = [];
-                  result.map((item) => {
+                  result.sheetItems.map((item) => {
                     this.state.images.map((img) => {
                       if(item.itemId === img.id){
                         this.state.categories.map((cat) => {
@@ -90,17 +95,15 @@ class Livret extends React.Component {
                       }
                     });
                   });
-                  let date = new Date();
-                  let dateString = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate())
                   this.setState({
                       items : [...itemList],
-                      date : dateString
                   });
                 },(error) => {
                     console.log(error);
                 }
                 )
-        )
+              })
+            )
       }
     render(){
     return <div>

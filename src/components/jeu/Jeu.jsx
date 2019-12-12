@@ -1,7 +1,7 @@
 import React from "react";
 import {Image, Container, Row, Col, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import './Jeu.css';
-import { Route, Link, BrowserRouter as Router, useParams } from 'react-router-dom'
+import { Route, Link, BrowserRouter as Router, } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import Popup from "reactjs-popup";
 
@@ -24,8 +24,7 @@ class Jeu extends React.Component {
         pasBesoin : [],
         pasContent : [],
         sheetId : 0,
-        finDuJeu : false,
-        codeUser : "",
+        finDuJeu : false
       };
     }
     smileyClicked = (image,smiley) => {
@@ -173,7 +172,6 @@ class Jeu extends React.Component {
           method: 'POST',
           mode: 'no-cors',
           headers:{
-            'Accept':'application/json',
             'Content-Type':'application/json'
           },
           body: JSON.stringify(bodyToFetch)
@@ -181,7 +179,10 @@ class Jeu extends React.Component {
           this.setState({
             finDuJeu : true
           });
-        })
+          },(error) => {
+            console.log(error);
+          }
+        )
       }else{
         let nvEtape = etapes[0];
         if(configEtape){
@@ -238,15 +239,15 @@ class Jeu extends React.Component {
             img.image = img.image.replace("/images/","/");
           })
           this.setState({
-            images : result,
-            codeUser : this.props.match.params.code
+            images : result
           });
           },(error) => {
             console.log(error);
           }
         )
-      ).then(
-        fetch("/sheet/new/"+this.state.codeUser, {
+      ).then(() => {
+        let url = "/sheet/new/" + this.props.match.params.code;
+        fetch(url, {
           method: 'GET',
           mode: 'no-cors',
           headers:{
@@ -260,12 +261,12 @@ class Jeu extends React.Component {
             console.log(error);
           }
         )
-      )
+      })
     }
     render(){
-      if(this.state.finDuJeu){
-        const code = this.state.codeUser
-        return <Redirect to={`livret/${code}`}></Redirect>
+      if(this.state.finDuJeu === true){
+        const code = this.props.match.params.code
+        return <Redirect to={`/livret/${code}`}></Redirect>
       }else{
         return <div>
             <div>
