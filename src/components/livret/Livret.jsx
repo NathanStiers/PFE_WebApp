@@ -4,6 +4,7 @@ import '../../index.css'
 import './Livret.css';
 
 let imagesPath = process.env.PUBLIC_URL + "/imagesJeu";
+let dates = []
 
 class Livret extends React.Component {
     constructor(props){
@@ -53,6 +54,7 @@ class Livret extends React.Component {
                 }
             ).then(() => {
             let url = "/sheet/date/"+this.state.userCode+"/"+this.state.date
+            dates.push(this.state.date)
             fetch(url,{
                 method: 'GET',
                 mode: 'no-cors',
@@ -131,13 +133,14 @@ class Livret extends React.Component {
                 </thead>
                 <tbody>
                     {this.state.items.map((item) => {
+                      {console.log(dates)}
                       return <tr>
-                        <td class='Dyslexic'>{item.itemId.category}</td>
+                    <td class='Dyslexic'>{item.itemId.category}</td>
                         <td><Image width='200' height='auto'  fluid src={imagesPath + item.itemId.image} thumbnail /></td>
                         <td style={{backgroundColor:item.colorLoveIt}}><Image width='50' height='auto'  fluid src={item.loveIt} roundedCircle  /></td>
                         <td style={{backgroundColor:item.colorNeedHelp}}><Image width='50' height='auto'  fluid src={item.needHelp} roundedCircle  /></td>
                         <td style={{backgroundColor:item.colorWannaChange}}><Image width='50' height='auto'  fluid src={item.wannaChange} roundedCircle  /></td>
-                        <td class='Dyslexic'><textarea value = {item.comment}/><button onClick>enregistrer</button></td>
+                        <td class='Dyslexic'>{dates.pop()}<br/><textarea value = {item.comment}/><button onClick>enregistrer</button></td>
                       </tr>
                     })}
                 </tbody>
