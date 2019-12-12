@@ -130,7 +130,7 @@ class Jeu extends React.Component {
     }
     btnSuivant = () => {
       if(this.state.etape === etapes[2]){
-        console.log(this.state); // TODO !!!!!!!!! fetch pour envoyer les info à l'api
+        console.log(this.state); // TODO !!!!!!!!! fetch pour envoyer les info à l'api puis redirect vers livret
       }else{
         let nvEtape = etapes[0];
         if(configEtape){
@@ -175,23 +175,24 @@ class Jeu extends React.Component {
         },(error) => {
           console.log(error);
         }
-      )
-      fetch("/images", {
-        method: 'GET',
-        mode: 'no-cors',
-        headers:{
-          'Accept':'application/json',
-        }
-      }).then(result => result.json()).then(result => {
-        result.map(img => {
-          img.image = img.image.replace("/images/","/");
-        })
-        this.setState({
-          images : result
-        });
-        },(error) => {
-          console.log(error);
-        }
+      ).then(
+        fetch("/images", {
+          method: 'GET',
+          mode: 'no-cors',
+          headers:{
+            'Accept':'application/json',
+          }
+        }).then(result => result.json()).then(result => {
+          result.map(img => {
+            img.image = img.image.replace("/images/","/");
+          })
+          this.setState({
+            images : result
+          });
+          },(error) => {
+            console.log(error);
+          }
+        )
       )
     }
     render(){
