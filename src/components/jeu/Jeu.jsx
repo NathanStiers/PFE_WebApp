@@ -8,26 +8,6 @@ import Popup from "reactjs-popup";
 let imagesPath = process.env.PUBLIC_URL + "/imagesJeu";
 let etapes = ['J\'aime / Je n\'aime pas','J\'ai pas besoin d\'aide / J\'ai besoin d\'aide','Je suis content / Je ne suis pas content'];
 let configEtape = true;
-let sheetId = 1;
-
-
-const positiveClick = e => {
-  e.currentTarget.style.background = "#00ff00";
-
-/*TODO :
- * Verifier l'autre choix.
- * enregister la valeur.
- * actualiser la valeur lorsqu'on reclique sur un élément (pas nécessaire mais un plus)
- * envoyer les données.
- * */
-
-}
-
-const negativeClick = e => {
-  e.currentTarget.style.background = "#ff0000";
-
-  //TODO : Idem que positive
-}
 
 class Jeu extends React.Component {
     constructor(props){
@@ -36,6 +16,7 @@ class Jeu extends React.Component {
         categories : [],
         images : [],
         etape : etapes[0],
+        selected : [],
         aime : [],
         besoin : [],
         content : [],
@@ -45,6 +26,10 @@ class Jeu extends React.Component {
       };
     }
     smileyClicked = (image,smiley) => {
+      let nvSelected = [...this.state.selected];
+      if(!nvSelected.includes(image)){
+        nvSelected.push(image);
+      }
       let nvAime = [...this.state.aime];
       let nvBesoin = [...this.state.besoin];
       let nvContent = [...this.state.content];
@@ -134,6 +119,7 @@ class Jeu extends React.Component {
         }
       }
       this.setState({
+        selected : [...nvSelected],
         aime : [...nvAime],
         besoin : [...nvBesoin],
         content : [...nvContent],
@@ -144,13 +130,17 @@ class Jeu extends React.Component {
     }
     btnSuivant = () => {
       if(this.state.etape === etapes[2]){
-        console.log(this.state) 
-        //todo fetch update sheet ici
+        console.log(this.state); // TODO !!!!!!!!! fetch pour envoyer les info à l'api
       }else{
         let nvEtape = etapes[0];
         if(configEtape){
           if(this.state.etape === etapes[0]){
             nvEtape = etapes[1];
+            this.state.images.map((img) => {
+              if(!this.state.selected.includes(img)){
+                document.getElementById("img" + img.id).style.display = "none";
+              }
+            });
           }else if(this.state.etape === etapes[1]){
             nvEtape = etapes[2];
           }
@@ -159,6 +149,11 @@ class Jeu extends React.Component {
             nvEtape = etapes[2];
           }else if(this.state.etape === etapes[1]){
             nvEtape = etapes[0];
+            this.state.images.map((img) => {
+              if(!this.state.selected.includes(img)){
+                document.getElementById("img" + img.id).style.display = "none";
+              }
+            });
           }
         }
         this.setState({
@@ -220,7 +215,7 @@ class Jeu extends React.Component {
                       {this.state.images.map((image) => {
                         if(image.category === category.id){
                           return <Col md={2}>
-                            <Popup trigger={<Image fluid src={imagesPath + image.image} thumbnail />} modal closeOnDocumentClick>
+                            <Popup trigger={<Image id={"img" + image.id} fluid src={imagesPath + image.image} thumbnail />} modal closeOnDocumentClick>
                               <Container>
                                 <Row>
                                     <h3 className='Dyslexic' id='titrePopup'>{this.state.etape + " : " + image.name}</h3>
