@@ -1,7 +1,7 @@
 import React from "react";
 import {Image, Container, Row, Col, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import './Jeu.css';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, BrowserRouter as Router, useParams } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 import Popup from "reactjs-popup";
 
@@ -25,6 +25,8 @@ class Jeu extends React.Component {
         pasContent : [],
         comment : {},
         sheetId : 0,
+        finDuJeu : false,
+        codeUser : "",
       };
     }
     smileyClicked = (image,smiley) => {
@@ -132,7 +134,55 @@ class Jeu extends React.Component {
     }
     btnSuivant = () => {
       if(this.state.etape === etapes[2]){
-        console.log(this.state); // TODO !!!!!!!!! fetch pour envoyer les info à l'api puis redirect vers livret
+        let sheetItems = [];
+        this.state.selected.map((image)=>{
+          let item = {
+            sheetId : this.state.sheetId,
+            itemId : 0,
+            loveIt : false,
+            needHelp : false,
+            wannaChange : false,
+            favorite : false,
+            comment : "",
+          }
+          item.itemId = image.id;
+          if(this.state.aime.includes(image)){
+            item.loveIt = true;
+          }
+          if(this.state.aimePas.includes(image)){
+            item.loveIt = false;
+          }
+          if(this.state.pasBesoin.includes(image)){
+            item.needHelp = false;
+          }
+          if(this.state.besoin.includes(image)){
+            item.needHelp = true;
+          }
+          if(this.state.content.includes(image)){
+            item.wannaChange = false;
+          }
+          if(this.state.pasContent.includes(image)){
+            item.wannaChange = true;
+          }
+          sheetItems.push(item);
+        });
+        let bodyToFetch = {
+          sheetId : this.state.sheetId,
+          sheetItems : [...sheetItems]
+        }
+        fetch("/sheetItem/endGame", {
+          method: 'POST',
+          mode: 'no-cors',
+          headers:{
+            'Accept':'application/json',
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify(bodyToFetch)
+        }).then(result => {
+          this.setState({
+            finDuJeu : true
+          });
+        })
       }else{
         let nvEtape = etapes[0];
         if(configEtape){
@@ -189,8 +239,24 @@ class Jeu extends React.Component {
             img.image = img.image.replace("/images/","/");
           })
           this.setState({
-            images : result
+            images : result,
+            codeUser : this.props.match.params.code
           });
+          },(error) => {
+            console.log(error);
+          }
+        )
+      ).then(
+        fetch("/sheet/new/"+this.state.codeUser, {
+          method: 'GET',
+          mode: 'no-cors',
+          headers:{
+            'Accept':'application/json',
+          }
+        }).then(result => result.json()).then(result => {
+            this.setState({
+              sheetId : result
+            });
           },(error) => {
             console.log(error);
           }
@@ -226,7 +292,11 @@ class Jeu extends React.Component {
     }
 
     render(){
-      return <div>
+      if(this.state.finDuJeu){
+        const code = this.state.codeUser
+        return <Redirect to={`livret/${code}`}></Redirect>
+      }else{
+        return <div>
             <div>
               <h1 className='Jeu-Titre Dyslexic'>HandicApp</h1>
               <h2 id="sousTitre" className='Jeu-SousTitre Dyslexic'>Raconte ton histoire</h2>
@@ -283,6 +353,7 @@ class Jeu extends React.Component {
             <p>Une fois qu'il a fini une des étapes ==> étape suivante</p>
             <Link to="livret">Une fois qu'il a fini toutes les étapes</Link>
         </div>
+      }
     }
 }
 
