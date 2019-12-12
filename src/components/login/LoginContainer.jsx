@@ -37,24 +37,32 @@ const LoginContainer = () => {
         };
 
         try{
+            console.log(user)
             const response = await fetch ('/user/connection', {
                 method : 'POST',
                 body : JSON.stringify(user),
                 mode : 'no-cors',
                 headers : {
-                    'Content-Type': 'text/plain;charset=UTF-8',
+                    'Content-Type': 'application/json',
                     'Content-Encoding' : 'text/plain',
                     'Accept': 'application/json, text/plain, */*',
                 }
-            }).then(result => result.json())
-            console.log(response)
+            }).then(result => {
+                if(result.status === 200){ //enfant
+                    
+                }else if(result.status === 201){ //pro
+
+                }else if(result.status === 202){ //contact
+                    
+                }
+            })
+            
         }
         catch (err){
             console.error("LoginContainer::Error", err);
             setAuthentification(false);
             setErrorMessage(err.toString());
         }
-        console.log("click sur boutton connexion");
     };
 
         //render
@@ -86,7 +94,7 @@ const LoginContainer = () => {
 
                 //TODO redirection selo la personne conecté
                 <div>
-                     <Redirect to="jeu"></Redirect>
+                     <Redirect to="jeu/"></Redirect>
                     <p>TODO Redirection selon le role de la personne</p>
                 </div>
 

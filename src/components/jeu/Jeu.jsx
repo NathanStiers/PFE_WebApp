@@ -22,7 +22,8 @@ class Jeu extends React.Component {
         content : [],
         aimePas : [],
         pasBesoin : [],
-        pasContent : []
+        pasContent : [],
+        sheetId : 0,
       };
     }
     smileyClicked = (image,smiley) => {
