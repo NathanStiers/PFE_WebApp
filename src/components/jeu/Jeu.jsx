@@ -23,6 +23,7 @@ class Jeu extends React.Component {
         aimePas : [],
         pasBesoin : [],
         pasContent : [],
+        comment : {},
         sheetId : 0,
       };
     }
@@ -196,6 +197,34 @@ class Jeu extends React.Component {
         )
       )
     }
+
+     onbtncomment = (image, e) => {
+
+      let nvComment = {...this.state.comment};
+
+      let btn = e.currentTarget
+      btn.style.visibility = "hidden";
+
+      btn.parentElement.getElementsByTagName("textarea")[0].style.visibility = "visible";
+      btn.parentElement.getElementsByClassName("btnCommentValid")[0].style.visibility = "visible";
+
+      if(nvComment[image] !== undefined){
+        btn.parentElement.getElementsByTagName("textarea")[0].value = nvComment[image];
+      }
+
+    }
+
+    onSaveComment = (image, e) => {
+      
+      let nvComment = {...this.state.comment}; 
+      
+      nvComment[image] = e.currentTarget.parentElement.getElementsByTagName("textarea")[0].value;
+
+      this.setState({
+        comment : {...nvComment}
+      });
+    }
+
     render(){
       return <div>
             <div>
@@ -232,6 +261,13 @@ class Jeu extends React.Component {
                                     <Col>
                                         <Button variant="danger" onClick={() => this.smileyClicked(image,'sad')}><Image className='smiley' fluid src={imagesPath + '/smiley/sad.jpg'} roundedCircle/></Button>  
                                     </Col>
+                                </Row>
+                                <Row>
+                                  <Col className = "commentCol">
+                                    <button className = "Dyslexic btnComment" onClick={(e) => this.onbtncomment(image, e)}>Ajouter un commentaire</button>
+                                    <textarea placeholder = "Entrez le commentaire ici"></textarea>
+                                    <button className = "btnCommentValid" onClick = {(e) => {this.onSaveComment(image, e)}}>Enregistrer</button>
+                                  </Col>
                                 </Row>
                               </Container>
                             </Popup>
