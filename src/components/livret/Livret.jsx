@@ -105,6 +105,13 @@ class Livret extends React.Component {
               })
             )
       }
+
+      onSaveComment = (e) => {
+        let text = e.currentTarget.parentElement.getElementsByTagName("textarea")[0].value;
+
+        console.log(text); //TODO enregistrer valeur + empêcher la modification pour les autres utilisateurs
+      }
+
     render(){
     return <div>
             <div>
@@ -130,7 +137,7 @@ class Livret extends React.Component {
                         <td style={{backgroundColor:item.colorLoveIt}}><Image width='50' height='auto'  fluid src={item.loveIt} roundedCircle  /></td>
                         <td style={{backgroundColor:item.colorNeedHelp}}><Image width='50' height='auto'  fluid src={item.needHelp} roundedCircle  /></td>
                         <td style={{backgroundColor:item.colorWannaChange}}><Image width='50' height='auto'  fluid src={item.wannaChange} roundedCircle  /></td>
-                        <td class='Dyslexic'>{item.comment}</td>
+                        <td class='Dyslexic'><textarea value = {item.comment}/><button onClick>enregistrer</button></td>
                       </tr>
                     })}
                 </tbody>
