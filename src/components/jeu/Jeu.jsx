@@ -45,40 +45,101 @@ class Jeu extends React.Component {
       };
     }
     smileyClicked = (image,smiley) => {
-      let tab0 = [...this.state.aime];
-      let tab1 = [...this.state.besoin];
-      let tab2 = [...this.state.content];
-      let tab3 = [...this.state.aimePas];
-      let tab4 = [...this.state.pasBesoin];
-      let tab5 = [...this.state.pasContent];
+      let nvAime = [...this.state.aime];
+      let nvBesoin = [...this.state.besoin];
+      let nvContent = [...this.state.content];
+      let nvAimePas = [...this.state.aimePas];
+      let nvPasBesoin = [...this.state.pasBesoin];
+      let nvPasContent = [...this.state.pasContent];
+      var idx;
       if(this.state.etape === etapes[0]){
         if(smiley === 'happy'){
-          tab0.push(image)
-        }else{
-          tab3.push(image)
+          if(nvAimePas.includes(image)){
+            for(idx = 0; idx < nvAimePas.length; idx++){ 
+              if ( nvAimePas[idx].id === image.id) {
+                nvAimePas.splice(idx, 1); 
+                idx--;
+              }
+            }
+          }
+          if(!nvAime.includes(image)){
+            nvAime.push(image)
+          }
+        }else if(smiley === 'sad'){
+          if(nvAime.includes(image)){
+            for(idx = 0; idx < nvAime.length; idx++){ 
+              if ( nvAime[idx].id === image.id) {
+                nvAime.splice(idx, 1); 
+                idx--;
+              }
+            }
+          }
+          if(!nvAimePas.includes(image)){
+            nvAimePas.push(image)
+          }
         }
       }
       if(this.state.etape === etapes[1]){
         if(smiley === 'happy'){
-          tab1.push(image)
-        }else{
-          tab4.push(image)
+          if(nvBesoin.includes(image)){
+            for(idx = 0; idx < nvBesoin.length; idx++){ 
+              if ( nvBesoin[idx].id === image.id) {
+                nvBesoin.splice(idx, 1); 
+                idx--;
+              }
+            }
+          }
+          if(!nvPasBesoin.includes(image)){
+            nvPasBesoin.push(image)
+          }
+        }else if(smiley === 'sad'){
+          if(nvPasBesoin.includes(image)){
+            for(idx = 0; idx < nvPasBesoin.length; idx++){ 
+              if ( nvPasBesoin[idx].id === image.id) {
+                nvPasBesoin.splice(idx, 1); 
+                idx--;
+              }
+            }
+          }
+          if(!nvBesoin.includes(image)){
+            nvBesoin.push(image)
+          }
         }
       }
       if(this.state.etape === etapes[2]){
         if(smiley === 'happy'){
-          tab2.push(image)
-        }else{
-          tab5.push(image)
+          if(nvPasContent.includes(image)){
+            for(idx = 0; idx < nvPasContent.length; idx++){ 
+              if ( nvPasContent[idx].id === image.id) {
+                nvPasContent.splice(idx, 1); 
+                idx--;
+              }
+            }
+          }
+          if(!nvContent.includes(image)){
+            nvContent.push(image)
+          }
+        }else if(smiley === 'sad'){
+          if(nvContent.includes(image)){
+            for(idx = 0; idx < nvContent.length; idx++){ 
+              if ( nvContent[idx].id === image.id) {
+                nvContent.splice(idx, 1); 
+                idx--;
+              }
+            }
+          }
+          if(!nvPasContent.includes(image)){
+            nvPasContent.push(image)
+          }
         }
       }
       this.setState({
-        aime : tab0,
-        besoin : tab1,
-        content : tab2,
-        aimePas : tab3,
-        pasBesoin : tab4,
-        pasContent : tab5
+        aime : [...nvAime],
+        besoin : [...nvBesoin],
+        content : [...nvContent],
+        aimePas : [...nvAimePas],
+        pasBesoin : [...nvPasBesoin],
+        pasContent : [...nvPasContent]
       });
     }
     btnSuivant = () => {
@@ -157,22 +218,22 @@ class Jeu extends React.Component {
                     <h3 id={category.id} className='Dyslexic'>{category.label}</h3> 
                     <Row>
                       {this.state.images.map((image) => {
-                        if(image.category == category.id){
+                        if(image.category === category.id){
                           return <Col md={2}>
                             <Popup trigger={<Image fluid src={imagesPath + image.image} thumbnail />} modal closeOnDocumentClick>
                               <Container>
                                 <Row>
-                                    <h3 className='Dyslexic'>{this.state.etape + " : " + image.name}</h3>
+                                    <h3 className='Dyslexic' id='titrePopup'>{this.state.etape + " : " + image.name}</h3>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Image className='smiley' fluid src={imagesPath + '/smiley/happy.jpg'} roundedCircle  onClick={() => this.smileyClicked(image,'happy')}/>
+                                        <Button variant="success" onClick={() => this.smileyClicked(image,'happy')}><Image className='smiley' fluid src={imagesPath + '/smiley/happy.jpg'} roundedCircle/></Button>
                                     </Col>
                                     <Col>
                                         <Image fluid src={imagesPath + image.image} thumbnail />
                                     </Col>
                                     <Col>
-                                        <Image className='smiley' fluid src={imagesPath + '/smiley/sad.jpg'} roundedCircle  onClick={() => this.smileyClicked(image,'sad')}/>  
+                                        <Button variant="danger" onClick={() => this.smileyClicked(image,'sad')}><Image className='smiley' fluid src={imagesPath + '/smiley/sad.jpg'} roundedCircle/></Button>  
                                     </Col>
                                 </Row>
                               </Container>
