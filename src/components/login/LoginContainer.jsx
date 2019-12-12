@@ -15,8 +15,10 @@ const LoginContainer = () => {
     const [nom, setNom] = useState("");
     const [code, setCode] = useState("");
 
-    const [isAuthenticated, setAuthentification ] = useState(false);
+    const [isAuthenticated, setAuthentification ] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+
+    let way;
 
     // manage event fuction to update the state
     const onInputChange = e => {
@@ -48,25 +50,29 @@ const LoginContainer = () => {
                     'Accept': 'application/json, text/plain, */*',
                 }
             }).then(result => {
+                console.log(result.status)
                 if(result.status === 200){ //enfant
-                    
+                    console.log('enfant')
+                    setAuthentification("enfant");
                 }else if(result.status === 201){ //pro
-
+                    console.log('pro')
+                    setAuthentification("pro");
                 }else if(result.status === 202){ //contact
-                    
+                    console.log('contact')
+                    setAuthentification("contact");
                 }
             })
             
         }
         catch (err){
             console.error("LoginContainer::Error", err);
-            setAuthentification(false);
+            setAuthentification("");
             setErrorMessage(err.toString());
         }
     };
 
         //render
-        if(!isAuthenticated){
+        if(isAuthenticated===""){
             return (
 
                 <div>
@@ -89,15 +95,23 @@ const LoginContainer = () => {
                     </div>
                 </div>
             );
+        }else if(isAuthenticated==="enfant"){
+            return (
+                <Redirect to={`jeu/${code}`}></Redirect>
+            );
+        }
+        else if(isAuthenticated==="pro"){
+            return (
+                <Redirect to={`animateur/${code}`}></Redirect>
+            );
+        }
+        else if(isAuthenticated==="contact"){
+            return (
+                <Redirect to={`livret/${code}`}></Redirect>
+            );
         }else{
             return (
-
-                //TODO redirection selo la personne conecté
-                <div>
-                     <Redirect to="jeu/"></Redirect>
-                    <p>TODO Redirection selon le role de la personne</p>
-                </div>
-
+                <Redirect to={`/`}></Redirect>
             );
         }
     }

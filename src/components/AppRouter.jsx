@@ -14,11 +14,11 @@ function AppRouter() {
   return (
     <Router>
       <Route exact path="/" component={LoginContainer} ></Route>
-      <Route path="/jeu" component={Jeu}></Route>
-      <Route path="/animateur" component={Animateur}></Route>
+      <Route path="/jeu/:code" component={Jeu}></Route>
+      <Route path="/animateur/:code" component={Animateur}></Route>
       <Route path="/configuration" component={Configuration}></Route>
       <Route path="/test" component={Test}></Route>
-      <Route path="/livret" component={Livret}></Route>
+      <Route path="/livret/:code" component={Livret}></Route>
     </Router>
   )
 }
