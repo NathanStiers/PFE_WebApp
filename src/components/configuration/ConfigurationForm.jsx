@@ -8,8 +8,7 @@ const ConfigurationForm = ({
     malvoyant, //bool
     mouvement, //bool
     daltonien, //bool
-    helpFirst,
-    onSubmit
+    helpFirst
 }) => {
     //code
 
@@ -17,7 +16,7 @@ const ConfigurationForm = ({
     return (
         <Row>
                 <Col>
-                    <Form onSubmit = {onSubmit} >
+                    <Form >
                         <Form.Group controlId = "formHorizontalMalvoyant">
                             <Form.Check className = "Dyslexic checkboxText" type = "checkbox" label = "L'enfant est malvoyant." /* OU Mode Malvoyant */ /> 
                         </Form.Group>
@@ -34,9 +33,6 @@ const ConfigurationForm = ({
                             <Form.Check className = "Dyslexic checkboxText" type = "checkbox" label = "Je préfère commencer le jeu par besoins d'aide." />
                         </Form.Group>
 
-                        <Form.Group>
-                            <Button className = "Dyslexic buttonText" type = "submit" onSubmit = {onSubmit} >Appliquer</Button>
-                        </Form.Group>
                     </Form>
                 </Col>
         </Row>
