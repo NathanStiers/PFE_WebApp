@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Cette application a été dévelopée dans le cadre d'un travail de fin d'étude à l'Institut Paul Lambin (IPL)
+
+## React est la librairie utilisée pour afficher les résultats de fetch vers l'API prévue à cet effet.
+
+his project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
