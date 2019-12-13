@@ -32,7 +32,6 @@ const Configuration = () => {
                     onSubmit = {onSubmit}
                 />
             </div>
-            <Link to="jeu">Une fois le bouton "Appliquer" cliqué</Link>
         </div>
     );
 }

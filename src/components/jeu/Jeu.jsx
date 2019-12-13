@@ -25,8 +25,14 @@ class Jeu extends React.Component {
         pasContent : [],
         comment : {},
         sheetId : 0,
-        finDuJeu : false
+        finDuJeu : false,
+        config : false
       };
+    }
+    configuration = () => {
+      this.setState({
+        config : true
+      })
     }
     smileyClicked = (image,smiley) => {
       let nvSelected = [...this.state.selected];
@@ -296,12 +302,17 @@ class Jeu extends React.Component {
       if(this.state.finDuJeu === true){
         const code = this.props.match.params.code
         return <Redirect to={`/livret/${code}`}></Redirect>
-      }else{
+      }else if(this.state.config === true){
+        const code = this.props.match.params.code
+        return <Redirect to={`/configuration/${code}`}></Redirect>
+      }
+      else{
         return <div>
             <div>
               <h1 className='Jeu-Titre Dyslexic'>HandicApp</h1>
               <h2 id="sousTitre" className='Jeu-SousTitre Dyslexic'>Raconte ton histoire</h2>
               <h2 className='Jeu-SousTitre Dyslexic'>{this.state.etape}</h2>
+              <Button className="mb-3" variant="warning" onClick={() => this.configuration()}><Image width="30" height="auto" fluid src={imagesPath + '/configuration.jpg'} roundedCircle/></Button>
             </div>
             <ListGroup>
             <ListGroupItem variant="info">
@@ -350,9 +361,6 @@ class Jeu extends React.Component {
               </ListGroupItem>
             )}
             </ListGroup>
-            <Link to="configuration">Une fois l'icône de configuration cliquée</Link><br/><br/>
-            <p>Une fois qu'il a fini une des étapes ==> étape suivante</p>
-            <Link to="livret">Une fois qu'il a fini toutes les étapes</Link>
         </div>
       }
     }

@@ -89,9 +89,6 @@ const LoginContainer = () => {
                             authentificate = {authentificate} //Méthode répondant à l'évenement -> devra faire un fetch et ensuite un Redirect si le fetch retourne 200
                             onInputChange = {onInputChange}
                         ></LoginForm>
-                        <Link to="jeu">Une fois connecté si enfant</Link><br/><br/>
-                        <Link to="animateur">Une fois connecté si animateur</Link><br/><br/>
-                        <Link to="test">Test de la pile technologique</Link>
                     </div>
                 </div>
             );

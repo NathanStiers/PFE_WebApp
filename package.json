@@ -7,6 +7,7 @@
   "proxy": "https://pfe-api-dev.herokuapp.com/",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "create-react-class": "^15.6.3",
     "http-proxy-middleware": "^0.20.0",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
